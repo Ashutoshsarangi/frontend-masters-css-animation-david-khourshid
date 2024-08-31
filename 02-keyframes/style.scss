@@ -1,4 +1,4 @@
-@import '../styles/base.scss';
+@import "../styles/base.scss";
 
 :root {
   --color-gray: #8c97b7;
@@ -25,9 +25,10 @@ body {
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
   grid-column-gap: 1rem;
-  grid-template-areas: 'input button';
+  grid-template-areas: "input button";
 
-  // Add an animation here
+  animation-name: slide-up;
+  animation-duration: 1s;
 
   --color: var(--color-gray);
   &:focus-within {
@@ -48,6 +49,11 @@ body {
   border-radius: 0.25rem;
   outline: none;
   transition: inherit;
+
+  &:invalid {
+    animation-name: shake;
+    animation-duration: 1sec;
+  }
 }
 
 .ui-button {
@@ -71,9 +77,33 @@ body {
 }
 
 @keyframes slide-up {
-  // Add keyframes here
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    translate: none;
+  }
 }
 
 @keyframes shake {
-  // Add a shake animation here
+  from,
+  to {
+    transform: none;
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(-10%);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(10%);
+  }
 }
